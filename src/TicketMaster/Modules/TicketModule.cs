@@ -12,13 +12,13 @@ namespace TicketMaster.Modules
         {
             //you would want to add perms to this too, I leave that to you though
             var channel = await Context.Guild.CreateTextChannelAsync("Ticket 1", c => c.Topic = $"Hey {Context.User.Username}, this is your personal help channel.");
-            GlobalInMemoryStorage.TocketIDs.Add(channel.Id);
+            GlobalInMemoryStorage.TicketIDs.Add(channel.Id);
         }
 
         [Command("TicketClose")]
         public async Task TicketCloseAsync()
         {
-            if (GlobalInMemoryStorage.TocketIDs.Any(i => i == Context.Channel.Id))
+            if (GlobalInMemoryStorage.TicketIDs.Any(i => i == Context.Channel.Id))
             {
                 var channel = Context.Channel as SocketTextChannel;
                 await channel.DeleteAsync();
